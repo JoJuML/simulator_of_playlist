@@ -21,9 +21,12 @@ class simulator():
         self.length += 1
 
     def playing(self,change=True):
-        if change is True:
-            pass
         play = self.first
+        if change is True:
+            self.first = self.first.previous
+        else:
+            self.first = self.first.next
+            
         while True:
             self.first = self.first.previous
             
