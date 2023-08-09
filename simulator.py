@@ -9,20 +9,25 @@ class simulator():
         new = node_song(song)
         if self.length == 0:
             self.first = new
-            self.last = new
-        elif self.length == 1:
-            new.next = self.last
+            new.next = self.first
+            self.last.previous = self.first
             self.last = new
         else:
-            new.previous = self.last
-            self.last.next = new
-            self.last = new
+            current = self.last
+            while current.next != self.last:
+                current = current.next 
+            current.next = new
+            new.next = self.last
         self.length += 1
 
-    def playing(self):
+    def playing(self,change=True):
+        if change is True:
+            pass
         play = self.first
         while True:
-            self.first = self.first.next
+            self.first = self.first.previous
+            
+            
             if self.first == play:
                 break
         return play
