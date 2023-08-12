@@ -1,5 +1,5 @@
 from Node import node_song
-class simulator():
+class simulator:
     def __init__(self):
         self.first = None
         self.last = None
@@ -9,15 +9,17 @@ class simulator():
         new = node_song(song)
         if self.length == 0:
             self.first = new
-            new.next = self.first
-            self.last.previous = self.first
+            new.previous = self.first
             self.last = new
+            self.last.next = self.first
         else:
             current = self.last
             while current.next != self.last:
-                current = current.next 
+                current = current.next
             current.next = new
             new.next = self.last
+            self.last.previous = self.first
+            self.first.next = self.last
         self.length += 1
 
     def playing(self,change=True):
@@ -26,11 +28,10 @@ class simulator():
             self.first = self.first.previous
         else:
             self.first = self.first.next
-            
-        while True:
+                        
+        '''while True:
             self.first = self.first.previous
             
-            
-            if self.first == play:
-                break
-        return play
+            if self.first.previous == play:
+                break'''
+        return play.song
