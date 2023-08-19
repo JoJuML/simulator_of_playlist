@@ -39,9 +39,9 @@ class simulator:
         self.length += 1
 
     '''on this method the bool true in next will work for change the song after the first song added,
-    if the bool is false then is the opposite dirrection and the second bool in deled will remove a song
+    if the bool is false then is the opposite dirrection and the second bool in delete will remove a song
     if that´s true or not if this´s false'''
-    def playing(self,next=True,deled=False):
+    def playing(self,next=True,delete=False):
         '''this will preview if the playlist is empty'''
         if self.length == 0:
             raise Exception("the list is empty")
@@ -53,7 +53,7 @@ class simulator:
         else:
             self.probe = self.probe.next
 
-        if deled:
+        if delete:
             if play == self.first:
                 self.first = self.first.previous
                 self.last.previous = self.first
@@ -68,7 +68,7 @@ class simulator:
                 current.next = current2
                 current2.previous = current 
 
-            self.length -= 1 #if deled is true the counter would be less because a song was deleded
+            self.length -= 1 #if deleted is true the counter would be less because a song was deleted
 
         return play.song
     '''on this method will show a list with total songs added and numbers of songs'''
